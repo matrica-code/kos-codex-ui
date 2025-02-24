@@ -1,0 +1,11 @@
+{
+  "migrations": [
+    {
+      "version": "1.6.0",
+      "description": "Migration for v1.6.0",
+      "implementation": "./src/migrations/consolidate-sdk/consolidate-sdk",
+      "package": "@kosdev-code/kos-nx-plugin",
+      "name": "consolidate-sdk"
+    }
+  ]
+}

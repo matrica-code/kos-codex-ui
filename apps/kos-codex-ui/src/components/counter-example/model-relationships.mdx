@@ -1,0 +1,24 @@
+import { Canvas, Meta } from "@storybook/blocks";
+import { CounterExampleWithColors } from "./counter-example.stories";
+import { Snippet } from "../snippet";
+
+# Models
+
+<Meta title="Foundations/Models/3. Relationships" />
+
+One key aspect of kOS models is relationships between models. Let's take the previous counter model and add a new model that depends on it.
+
+Use the `kosui model` command to create a new model. This will handle colors to display.
+
+use the `@kosDependency` decorator to inject the counter model into the color model on the property `counterModel`.
+Then add a color array property, and a getter to return the color based on the counter model's count.
+
+<Snippet name="color-model@color-model.ts" />
+
+Create a hook to use the color model in a component via `kosui hook`.
+
+The following component will use the color as the background. The data in the model is observable, so the component will update when the color changes.
+
+<Canvas of={CounterExampleWithColors} sourceState="none" />
+
+<Snippet name="CounterWithColor@counter-example.tsx" />

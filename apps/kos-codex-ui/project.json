@@ -1,0 +1,149 @@
+{
+  "name": "kos-codex-ui",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/kos-codex-ui/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "executor": "@nx/webpack:webpack",
+      "outputs": ["{options.outputPath}"],
+      "defaultConfiguration": "production",
+      "options": {
+        "compiler": "babel",
+        "outputPath": "dist/apps/kos-codex-ui",
+        "index": "apps/kos-codex-ui/src/index.html",
+        "baseHref": "/",
+        "main": "apps/kos-codex-ui/src/main.ts",
+        "tsConfig": "apps/kos-codex-ui/tsconfig.app.json",
+        "assets": [
+          "apps/kos-codex-ui/src/favicon.ico",
+          "apps/kos-codex-ui/src/assets"
+        ],
+        "styles": [],
+        "scripts": [],
+        "webpackConfig": "apps/kos-codex-ui/webpack.config.ts"
+      },
+      "configurations": {
+        "development": {
+          "extractLicenses": false,
+          "optimization": false,
+          "sourceMap": true,
+          "vendorChunk": true
+        },
+        "production": {
+          "fileReplacements": [
+            {
+              "replace": "apps/kos-codex-ui/src/environments/environment.ts",
+              "with": "apps/kos-codex-ui/src/environments/environment.prod.ts"
+            }
+          ],
+          "optimization": true,
+          "outputHashing": "all",
+          "sourceMap": false,
+          "namedChunks": false,
+          "extractLicenses": true,
+          "vendorChunk": false,
+          "baseHref": "./"
+        }
+      }
+    },
+    "serve": {
+      "executor": "@nx/react:module-federation-dev-server",
+      "defaultConfiguration": "development",
+      "options": {
+        "buildTarget": "kos-codex-ui:build",
+        "hmr": true,
+        "port": 4200
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "kos-codex-ui:build:development"
+        },
+        "production": {
+          "buildTarget": "kos-codex-ui:build:production",
+          "hmr": false
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "serve-static": {
+      "executor": "@nx/web:file-server",
+      "defaultConfiguration": "production",
+      "options": {
+        "buildTarget": "kos-codex-ui:build",
+        "watch": false,
+        "port": 4200
+      },
+      "configurations": {
+        "development": {
+          "buildTarget": "kos-codex-ui:build:development"
+        },
+        "production": {
+          "buildTarget": "kos-codex-ui:build:production"
+        }
+      }
+    },
+    "kab": {
+      "command": "node tools/scripts/kabtool.mjs build kos-codex-ui && node tools/scripts/kabtool.mjs list kos-codex-ui ",
+      "options": {
+        "outputPath": "dist/archives/packages/kos-codex-ui/",
+        "zipName": "ui.zip",
+        "kabName": "kos-codex-ui.kab"
+      },
+      "dependsOn": ["zip"]
+    },
+    "zip": {
+      "command": "node tools/scripts/archiver.js kos-codex-ui",
+      "options": {
+        "outputPath": "dist/archives/packages/kos-codex-ui/",
+        "zipName": "ui.zip"
+      },
+      "dependsOn": ["build", "descriptor"]
+    },
+    "descriptor": {
+      "command": "node tools/scripts/descriptor.mjs kos-codex-ui",
+      "options": {
+        "outputPath": "dist/apps/kos-codex-ui",
+        "fileName": "descriptor.json"
+      },
+      "dependsOn": ["build"]
+    },
+    "storybook": {
+      "executor": "@nx/storybook:storybook",
+      "options": {
+        "port": 4400,
+        "configDir": "apps/kos-codex-ui/.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      },
+      "dependsOn": ["extract"]
+    },
+    "build-storybook": {
+      "executor": "@nx/storybook:build",
+      "outputs": ["{options.outputDir}"],
+      "options": {
+        "outputDir": "dist/storybook/kos-codex",
+        "configDir": "apps/kos-codex-ui/.storybook"
+      },
+      "configurations": {
+        "ci": {
+          "quiet": true
+        }
+      },
+      "dependsOn": ["extract"]
+    },
+    "extract": {
+      "command": "jscodeshift --snippetFile=apps/kos-codex-ui/.storybook/snippets.json --run-in-band --parser=tsx -d -t tools/codemod/extractSnippets.ts apps libs",
+      "dependsOn": ["clean-extract"]
+    },
+    "clean-extract": {
+      "command": "rm -f apps/kos-codex-ui/.storybook/snippets.json && touch apps/kos-codex-ui/.storybook/snippets.json"
+    }
+  },
+  "tags": []
+}

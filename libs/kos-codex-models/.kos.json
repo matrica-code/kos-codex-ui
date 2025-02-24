@@ -1,0 +1,57 @@
+{
+  "name": "hello-world-models-model",
+  "type": "kos.model",
+  "version": "0.1.0",
+  "models": {
+    "user": {
+      "name": "user",
+      "type": "user-model",
+      "singleton": false
+    },
+    "user-container": {
+      "name": "user-container",
+      "type": "user-container-model",
+      "singleton": true,
+      "container": true
+    },
+    "team": {
+      "name": "team",
+      "type": "team-model",
+      "singleton": false
+    },
+    "team-container": {
+      "name": "team-container",
+      "type": "team-container-model",
+      "singleton": true,
+      "container": true
+    },
+    "counter": {
+      "name": "counter",
+      "type": "counter-model",
+      "singleton": true
+    },
+    "color": {
+      "name": "color",
+      "type": "color-model",
+      "singleton": true
+    },
+    "handle": {
+      "name": "handle",
+      "type": "handle-model",
+      "singleton": false
+    },
+    "handle-container": {
+      "name": "handle-container",
+      "type": "handle-container-model",
+      "singleton": true,
+      "container": true
+    }
+  },
+  "generator": {
+    "defaults": {
+      "model": {
+        "folder": "models"
+      }
+    }
+  }
+}

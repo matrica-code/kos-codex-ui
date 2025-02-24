@@ -1,0 +1,54 @@
+{
+  "root": true,
+  "ignorePatterns": ["**/*"],
+  "plugins": ["@nx", "prettier"],
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "@nx/enforce-module-boundaries": [
+          "error",
+          {
+            "enforceBuildableLibDependency": true,
+            "allow": [],
+            "depConstraints": [
+              {
+                "sourceTag": "*",
+                "onlyDependOnLibsWithTags": ["*"]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["plugin:@nx/typescript", "plugin:prettier/recommended"],
+      "rules": {
+        "prettier/prettier": [
+          "error",
+          {
+            "singleQuote": false
+          }
+        ]
+      }
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "extends": ["plugin:@nx/javascript", "plugin:prettier/recommended"],
+      "rules": {}
+    },
+    {
+      "files": ["*.json"],
+"parser": "jsonc-eslint-parser",
+      "rules": {
+        "@nx/dependency-checks": [
+          "error",
+          {
+            "ignoredFiles": ["{projectRoot}/vite.config.{js,ts,mjs,mts}"]
+          }
+        ]
+      }
+    }
+  ]
+}

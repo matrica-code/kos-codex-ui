@@ -1,0 +1,17 @@
+import { Canvas, Meta } from "@storybook/blocks";
+import { CounterExampleWithColors } from "./counter-example.stories";
+import { Snippet } from "../snippet";
+
+# Adding interactivity to Models
+
+<Meta title="Foundations/Models/2. Interaction" />
+
+- In the CounterModel from the last example, add methods to start and stop the counter, and expose them in the public interface.
+
+<Snippet name="counter-model@counter-model.ts" />
+
+Within the CounterExample component, add a button to toggle the counter.
+
+<Snippet name="CounterWithToggle@counter-example.tsx" />
+
+<Canvas of={CounterExampleWithColors} sourceState="none" />

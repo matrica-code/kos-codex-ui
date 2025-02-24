@@ -1,0 +1,21 @@
+import { Canvas, Meta } from "@storybook/blocks";
+import { CounterExampleStory } from "./counter-example.stories";
+import { Snippet } from "../snippet";
+
+# Models
+
+<Meta title="Foundations/Models/1. Intro" />
+
+- Use the `kosui` cli tool to create a new model.
+- Register it in `src/app/registration.tsx`.
+- Update the model to add an interval on load
+
+<Snippet name="counter-model-simple@counter-model.ts" />
+
+Create a hook to consume the model with `kosui hook`
+
+Within a component, use the hook to get the model and render the count.
+
+<Snippet name="CounterExample@counter-example.tsx" />
+
+<Canvas of={CounterExampleStory} sourceState="none" />

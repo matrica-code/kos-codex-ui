@@ -1,0 +1,27 @@
+{
+  "name": "kos-codex-models",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/kos-codex-models/src",
+  "projectType": "library",
+  "targets": {
+    "api": {
+      "command": "node tools/scripts/generate-api-types.mjs kos-codex-models",
+      "options": {
+        "host": "http://127.0.0.1:8081"
+      }
+    },
+    "build": {
+      "executor": "@nx/vite:build",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/libs/kos-codex-models"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  },
+  "tags": []
+}

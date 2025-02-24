@@ -1,0 +1,35 @@
+import { Meta, Canvas } from "@storybook/blocks";
+import { TeamListStory } from "./team-list.stories";
+import { Snippet } from "../snippet";
+
+<Meta title="Foundations/Models/4. Container Models" />
+
+# Container models
+
+Container models are a way to manage a collection of models within a single model. It provides a entity to manage all models of a specific type in one place.
+
+## Creating a container model
+
+Use the `kosui model` command, and create a model - call it a `team` model, and ensure it is a container model as well as _not_ being a singleton model.
+
+Each `team` doesn't need to know about the container model, so we can say "no" to that question.
+
+This will create two new models in `models/team`: `team-model.ts` and `team-container-model.ts`.
+
+Within team-container model, add a new method to create a new team model. Let's give it a name. We'll later on add users.
+
+Because `Team` is a child model of `TeamContainer`, we only need to register `TeamContainer` in the `registration.ts` file - kOS will handle registration of any child models.
+
+We then add this property to the class and assign them in the constructor.
+
+<Snippet name="TeamModel@team-model.ts" />
+
+We can then create a hook for the container model to use in a component. This component will have a form to add a new team, and a list of teams.
+
+<Snippet name="TeamList@team-list.tsx" />
+
+The `Team` component will display the team name and description. Note that it is a `kosComponent` in order to become observable and watch the appropriate team model for any changes
+
+<Snippet name="TeamComponent@team.tsx" />
+
+<Canvas of={TeamListStory} />
