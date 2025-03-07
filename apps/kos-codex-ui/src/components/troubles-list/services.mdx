@@ -1,0 +1,31 @@
+import { Meta, Canvas, Story } from "@storybook/blocks";
+import { TroublesListStory } from "./troubles-list.stories";
+import { Snippet } from "../snippet";
+
+<Meta title="Foundations/Models/6. Data services" />
+
+# Services and API Data
+
+Most of the time, the models we use will be hooked up to API calls within the backend. To do this, we use `services` in order to troubles the communication between the frontend and backend. Below is an example of how to set up a service:
+
+Use `kosui model` to set up a model, give it a name (in this case `troubles`) then set up a container model, and then say `yes` when prompted to set up services.
+
+Troubles are a kOS concept that refers to issues or errors related to the functioning of the kOS device. We will discuss them in a bit more detail in a later section.
+
+The CLI tool will provide most of what you need to get started, just missing the api path. Use the API explorer tool within the simulator to find the url, and typescript autocomplete will enable you to type in the path and see what routes are available.
+
+Once the proper path is in place, you can call the service within the `troubles-container` model, then add a method to add the `Troubles` models.
+
+<Snippet name="initialize@troubles-container-model.ts" />
+
+<Snippet name="update@troubles-container-model.ts" />
+
+Once we have that, we can set up the constructor of the `troubles` model to handle the options.
+
+<Snippet name="TroublesConstructor@troubles-model.ts" />
+
+We can then create a hook with `kosui hook` and a component with `kosui component` and within the component, use the hook iterate over the list as normal, and render the name of each troubles.
+
+<Snippet name="TroublesList@troubles-list.tsx" />
+
+<Canvas of={TroublesListStory} />

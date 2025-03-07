@@ -1,13 +1,13 @@
 import { SingletonKosModelRegistrationFactory } from "@kosdev-code/kos-ui-sdk";
-import type { HandleContainerOptions } from "./types";
-import { Handle } from "./handle-registration";
-import { HandleContainerModelImpl, MODEL_TYPE } from "./handle-container-model";
-import type { HandleContainerModel } from "./handle-container-model";
+import type { TroublesContainerOptions } from "./types";
+import { Troubles } from "./troubles-registration";
+import { TroublesContainerModelImpl, MODEL_TYPE } from "./troubles-container-model";
+import type { TroublesContainerModel } from "./troubles-container-model";
 
 /**
- * # HandleContainer
+ * # TroublesContainer
  *
- * The registration bean includes convenience methods for creating and working with HandleContainerModel instances.
+ * The registration bean includes convenience methods for creating and working with TroublesContainerModel instances.
  *
  * ## type
  * The type property is a string that identifies the model type.
@@ -17,14 +17,14 @@ import type { HandleContainerModel } from "./handle-container-model";
  * @example
  * ```typescript
  *
- * @kosDependency({modelType: HandleContainer.type, id: "handleContainerId"})
- * private handleContainerModel: HandleContainerModel;
+ * @kosDependency({modelType: TroublesContainer.type, id: "troublesContainerId"})
+ * private troublesContainerModel: TroublesContainerModel;
  * ```
  *
  *
  * ## factory
  *
- * The factory method creates a factory function that can be used to create new HandleContainerModel instances.
+ * The factory method creates a factory function that can be used to create new TroublesContainerModel instances.
  *
  
  * As this is a singleton model, the factory function accepts the model options as its argument.
@@ -34,7 +34,7 @@ import type { HandleContainerModel } from "./handle-container-model";
  *
  * @example
  * ```typescript
- * const model = HandleContainer.factory({
+ * const model = TroublesContainer.factory({
  *   // Add option data
  * });
  * ```
@@ -43,16 +43,16 @@ import type { HandleContainerModel } from "./handle-container-model";
  *
  * ## predicate
  *
- * [Typescript type predicate](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates) function that will identify and narrow down a model to a HandleContainerModel.
+ * [Typescript type predicate](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates) function that will identify and narrow down a model to a TroublesContainerModel.
  *
  * @example
  * ```typescript
  *
  * const model: IKosDataModel = ...; // some model
  *
- * if (HandleContainer.predicate(model)) {
- *    // if the function evaluates to true, the model is narrowed down to HandleContainerModel
- *    // and the compiler will know that the model has the HandleContainerModel interface
+ * if (TroublesContainer.predicate(model)) {
+ *    // if the function evaluates to true, the model is narrowed down to TroublesContainerModel
+ *    // and the compiler will know that the model has the TroublesContainerModel interface
  *    model.updateAvailability(false);
  * }
  * ```
@@ -69,28 +69,28 @@ import type { HandleContainerModel } from "./handle-container-model";
  *
  * **registration.ts**
  * ```typescript
- * import { HandleContainer } from "@kos-codex/kos-codex-models";
+ * import { TroublesContainer } from "@kos-codex/kos-codex-models";
  * ...
  * import { ExtensionManager, IKosRegistry } from "@kosdev-code/kos-ui-sdk";
  * export const kosModels: IKosRegistry["models"] = {
- *  ...HandleContainer.registration,
+ *  ...TroublesContainer.registration,
  * };
  * ```
  *
  * ## registration.singleton
  
- * The handleContainer model is a singleton model.  This means that each time the factory function is called , the same instance will be returned.
+ * The troublesContainer model is a singleton model.  This means that each time the factory function is called , the same instance will be returned.
  * If the model does not yet exist, it will be created passing in the provided options to initialize it.
  *
  * Singleton models don't require an ID as they will use the model type as their ID to guarantee uniqueness throughout the system.
  
  * */
-export const HandleContainer = new SingletonKosModelRegistrationFactory<
-  HandleContainerModel,
-  HandleContainerOptions
+export const TroublesContainer = new SingletonKosModelRegistrationFactory<
+  TroublesContainerModel,
+  TroublesContainerOptions
 >({
-  class: HandleContainerModelImpl,
+  class: TroublesContainerModelImpl,
   type: MODEL_TYPE,
 });
 
-HandleContainer.addRelatedModel(Handle);
+TroublesContainer.addRelatedModel(Troubles);

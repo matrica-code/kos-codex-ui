@@ -35,14 +35,14 @@
       "type": "color-model",
       "singleton": true
     },
-    "handle": {
-      "name": "handle",
-      "type": "handle-model",
+    "troubles": {
+      "name": "troubles",
+      "type": "troubles-model",
       "singleton": false
     },
-    "handle-container": {
-      "name": "handle-container",
-      "type": "handle-container-model",
+    "troubles-container": {
+      "name": "troubles-container",
+      "type": "troubles-container-model",
       "singleton": true,
       "container": true
     }

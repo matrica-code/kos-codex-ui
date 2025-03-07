@@ -9,3 +9,7 @@ export * from "./user";
 export * from "./team";
 
 export * from "./user-container";
+
+export * from "./troubles-container";
+
+export * from "./troubles";

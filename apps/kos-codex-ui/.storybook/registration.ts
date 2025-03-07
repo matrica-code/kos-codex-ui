@@ -24,6 +24,7 @@ import { initKosProvider } from "@kosdev-code/kos-ui-sdk";
 import {
   Color,
   Counter,
+  TroublesContainer,
   TeamContainer,
   UserContainer,
 } from "@kos-codex/kos-codex-models";
@@ -38,6 +39,7 @@ KosModelRegistry.freestyle
   .model(Counter)
   .model(TeamContainer)
   .model(UserContainer)
+  .model(TroublesContainer)
   .model(Color)
   .model(Lockout)
   .companion(Pump.type, pumpTypeFactory)

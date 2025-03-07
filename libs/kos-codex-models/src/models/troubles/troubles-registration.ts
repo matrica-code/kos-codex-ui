@@ -1,12 +1,12 @@
 import { KosModelRegistrationFactory } from "@kosdev-code/kos-ui-sdk";
-import type { HandleOptions } from "./types";
-import { HandleModelImpl, MODEL_TYPE } from "./handle-model";
-import type { HandleModel } from "./handle-model";
+import type { TroublesOptions } from "./types";
+import { TroublesModelImpl, MODEL_TYPE } from "./troubles-model";
+import type { TroublesModel } from "./troubles-model";
 
 /**
- * # Handle
+ * # Troubles
  *
- * The registration bean includes convenience methods for creating and working with HandleModel instances.
+ * The registration bean includes convenience methods for creating and working with TroublesModel instances.
  *
  * ## type
  * The type property is a string that identifies the model type.
@@ -16,14 +16,14 @@ import type { HandleModel } from "./handle-model";
  * @example
  * ```typescript
  *
- * @kosDependency({modelType: Handle.type, id: "handleId"})
- * private handleModel: HandleModel;
+ * @kosDependency({modelType: Troubles.type, id: "troublesId"})
+ * private troublesModel: TroublesModel;
  * ```
  *
  *
  * ## factory
  *
- * The factory method creates a factory function that can be used to create new HandleModel instances.
+ * The factory method creates a factory function that can be used to create new TroublesModel instances.
  *
  
  * The factory function is a curried function that takes the model id as the first argument and the options as the second argument.
@@ -33,7 +33,7 @@ import type { HandleModel } from "./handle-model";
  *
  * @example
  * ```typescript
- * const model = Handle.factory("handleId")({
+ * const model = Troubles.factory("troublesId")({
  *   // Add option data
  * });
  * ```
@@ -42,16 +42,16 @@ import type { HandleModel } from "./handle-model";
  *
  * ## predicate
  *
- * [Typescript type predicate](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates) function that will identify and narrow down a model to a HandleModel.
+ * [Typescript type predicate](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates) function that will identify and narrow down a model to a TroublesModel.
  *
  * @example
  * ```typescript
  *
  * const model: IKosDataModel = ...; // some model
  *
- * if (Handle.predicate(model)) {
- *    // if the function evaluates to true, the model is narrowed down to HandleModel
- *    // and the compiler will know that the model has the HandleModel interface
+ * if (Troubles.predicate(model)) {
+ *    // if the function evaluates to true, the model is narrowed down to TroublesModel
+ *    // and the compiler will know that the model has the TroublesModel interface
  *    model.updateAvailability(false);
  * }
  * ```
@@ -68,26 +68,26 @@ import type { HandleModel } from "./handle-model";
  *
  * **registration.ts**
  * ```typescript
- * import { Handle } from "@kos-ui/project-models";
+ * import { Troubles } from "@kos-ui/project-models";
  * import { KosModelRegistry } from "@kosdev-code/kos-dispense-sdk";
  *
  * import { initKosProvider } from "@kosdev-code/kos-ui-sdk";
  *
  * KosModelRegistry.dispense
  * .models()
- * .model(Handle);
+ * .model(Troubles);
  * ```
  *
  * ## registration.singleton
  
- * The handle model is NOT a singleton model.  This means that each time the factory function is called with a unique ID, a new model instance will be created.
+ * The troubles model is NOT a singleton model.  This means that each time the factory function is called with a unique ID, a new model instance will be created.
  * If the factory function is called with an ID that already exists, the existing model will be returned.
  
  * */
-export const Handle = new KosModelRegistrationFactory<
-  HandleModel,
-  HandleOptions
+export const Troubles = new KosModelRegistrationFactory<
+  TroublesModel,
+  TroublesOptions
 >({
-  class: HandleModelImpl,
+  class: TroublesModelImpl,
   type: MODEL_TYPE,
 });
