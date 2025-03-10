@@ -27,6 +27,7 @@ import {
   TroublesContainer,
   TeamContainer,
   UserContainer,
+  Configuration,
 } from "@kos-codex/kos-codex-models";
 
 KosModelRegistry.freestyle
@@ -40,6 +41,7 @@ KosModelRegistry.freestyle
   .model(TeamContainer)
   .model(UserContainer)
   .model(TroublesContainer)
+  .model(Configuration)
   .model(Color)
   .model(Lockout)
   .companion(Pump.type, pumpTypeFactory)

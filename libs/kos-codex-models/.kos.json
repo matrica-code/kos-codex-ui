@@ -45,6 +45,11 @@
       "type": "troubles-container-model",
       "singleton": true,
       "container": true
+    },
+    "configuration": {
+      "name": "configuration",
+      "type": "configuration-model",
+      "singleton": true
     }
   },
   "generator": {

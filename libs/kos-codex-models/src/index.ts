@@ -4,3 +4,4 @@ export * from "./models/color";
 export * from "./models/team";
 export * from "./models/user";
 export * from "./models/troubles";
+export * from "./models/configuration";

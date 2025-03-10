@@ -6,7 +6,7 @@ import {
   Input,
   TextContainer,
 } from "@kosdev-code/kos-ddk-components";
-import { ChangeEvent, ReactEventHandler, SyntheticEvent, useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { useUserContainer } from "../../hooks";
 import { User } from "../user";
 import styled from "@emotion/styled";
@@ -81,7 +81,9 @@ export const TeamWithUser: React.FunctionComponent<Props> = kosComponent(
         <InputContainer>
           <Input
             value={username}
-            onChange={(e: ChangeEvent<HTMLInputElement>) => setUsername(e.target.value)}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setUsername(e.target.value)
+            }
           />
           <select onChange={(e) => setRole(e.target.value)}>
             {[

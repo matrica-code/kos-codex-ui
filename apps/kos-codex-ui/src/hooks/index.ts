@@ -13,3 +13,5 @@ export * from "./user-container";
 export * from "./troubles-container";
 
 export * from "./troubles";
+
+export * from "./configuration";

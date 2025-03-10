@@ -1,0 +1,22 @@
+import { Meta, Canvas } from "@storybook/blocks";
+import { Snippet } from "../snippet";
+import {ConfigPropertyStory} from './config-property.stories'
+
+<Meta title="Foundations/7. Config Properties" />
+
+
+# Accessing Config Properties
+
+A kOS powered device can rely on a lot of configuration properties. Anything from the size of a pour, or the name of the device. These are viewable via the configuration viewer within kOS Studio.
+
+Those properties can be accessed within code with the `@kosConfigProperty` decorator.
+
+<Snippet name="ConfigDecorator@configuration-model.ts" />
+
+The value can be consumed by your app (either in models or in the UI) and can also be updated via the `updateProperty` method.
+
+<Snippet name="ConfigProperty@config-property.tsx" />
+
+As you might expect, configuration state persists, relative to the more ephemeral data state we've been using for our other models.
+
+<Canvas of={ConfigPropertyStory} />

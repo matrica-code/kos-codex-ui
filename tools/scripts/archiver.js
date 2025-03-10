@@ -12,8 +12,6 @@ const [, , name] = process.argv;
 const graph = readCachedProjectGraph();
 const project = graph.nodes[name];
 
-console.log(project.data.targets)
-
 const buildPath = path.resolve(
   project.data?.targets?.build?.options?.outputPath
 );
