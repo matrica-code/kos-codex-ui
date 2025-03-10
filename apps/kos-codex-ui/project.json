@@ -5,47 +5,19 @@
   "projectType": "application",
   "targets": {
     "build": {
-      "executor": "@nx/webpack:webpack",
-      "outputs": ["{options.outputPath}"],
-      "defaultConfiguration": "production",
+      "executor": "@nx/storybook:build",
+      "outputs": ["{options.outputDir}"],
       "options": {
-        "compiler": "babel",
+        "outputDir": "dist/apps/kos-codex-ui",
         "outputPath": "dist/apps/kos-codex-ui",
-        "index": "apps/kos-codex-ui/src/index.html",
-        "baseHref": "/",
-        "main": "apps/kos-codex-ui/src/main.ts",
-        "tsConfig": "apps/kos-codex-ui/tsconfig.app.json",
-        "assets": [
-          "apps/kos-codex-ui/src/favicon.ico",
-          "apps/kos-codex-ui/src/assets"
-        ],
-        "styles": [],
-        "scripts": [],
-        "webpackConfig": "apps/kos-codex-ui/webpack.config.ts"
+        "configDir": "apps/kos-codex-ui/.storybook"
       },
       "configurations": {
-        "development": {
-          "extractLicenses": false,
-          "optimization": false,
-          "sourceMap": true,
-          "vendorChunk": true
-        },
-        "production": {
-          "fileReplacements": [
-            {
-              "replace": "apps/kos-codex-ui/src/environments/environment.ts",
-              "with": "apps/kos-codex-ui/src/environments/environment.prod.ts"
-            }
-          ],
-          "optimization": true,
-          "outputHashing": "all",
-          "sourceMap": false,
-          "namedChunks": false,
-          "extractLicenses": true,
-          "vendorChunk": false,
-          "baseHref": "./"
+        "ci": {
+          "quiet": true
         }
-      }
+      },
+      "dependsOn": ["extract"]
     },
     "serve": {
       "executor": "@nx/react:module-federation-dev-server",
