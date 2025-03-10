@@ -7,8 +7,11 @@ type Story = StoryObj<typeof TeamList>;
 const meta: Meta<typeof TeamList> = {
   component: TeamList,
   title: "components/TeamList",
+  tags: ["!dev", "!autodocs"],
 };
 
 export default meta;
 
-export const TeamListStory: Story = {};
+export const TeamListStory: Story = {
+  tags: ["!dev", "!autodocs"],
+};

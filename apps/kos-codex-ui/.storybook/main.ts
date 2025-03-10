@@ -9,7 +9,7 @@ dotenv.config({
 
 function getKosEnv() {
   const kosKeys = Object.keys(process.env).filter((key) =>
-    key.startsWith("KOS_")
+    key.startsWith("KOS_"),
   );
   return kosKeys;
 }

@@ -7,6 +7,7 @@ type Story = StoryObj<typeof TroublesList>;
 const meta: Meta<typeof TroublesList> = {
   component: TroublesList,
   title: "components/TroublesList",
+  tags: ["!dev", "!autodocs"],
 };
 
 export default meta;

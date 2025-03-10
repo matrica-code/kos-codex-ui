@@ -17,6 +17,7 @@ type Story = StoryObj<typeof Counter>;
 const meta: Meta<typeof Counter> = {
   component: Counter,
   title: "components/CounterExample",
+  tags: ["!dev", "!autodocs"],
 };
 
 export default meta;
