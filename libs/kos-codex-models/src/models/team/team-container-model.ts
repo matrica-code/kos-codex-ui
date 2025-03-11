@@ -36,6 +36,12 @@ export class TeamContainerModelImpl
     return this._models.data;
   }
 
+  // extract-code ignore
+  prepopulate() {
+    this.createTeam("Team 1");
+    this.createTeam("Team 2");
+  }
+
   // extract-code method
   createTeam(name: string) {
     const model = Team.factory(`${this._models.data.length + 1}`)({

@@ -12,10 +12,21 @@ import { Snippet } from "../snippet";
 
 <Snippet name="counter-model-simple@counter-model.ts" />
 
-Create a hook to consume the model with `kosui hook`
+Create a hook to consume the model with `kosui hook`.
+
+This will generate both a hook and a Higher-Order Component (HOC) in order to access the model.
+
+The difference is that the HOC guarantees that the model will be present, while the hook does not and requires a bit of handling. The trade-off is that the hook has better performance, so given the tradeoffs, either can be used.
 
 Within a component, use the hook to get the model and render the count.
 
+#### With the Hook
 <Snippet name="CounterExample@counter-example.tsx" />
+
+#### With the HOC
+<Snippet name={["CounterWithHOC@counter-example.tsx", "CounterHOCDeclaration@counter-example.tsx"]} />
+
+Below is a working demo of the above code.
+
 
 <Canvas of={CounterExampleStory} sourceState="none" />

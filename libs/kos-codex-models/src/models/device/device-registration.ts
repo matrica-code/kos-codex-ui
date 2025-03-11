@@ -1,12 +1,12 @@
 import { SingletonKosModelRegistrationFactory } from "@kosdev-code/kos-ui-sdk";
-import type { ConfigurationOptions } from "./types";
-import { ConfigurationModelImpl, MODEL_TYPE } from "./configuration-model";
-import type { ConfigurationModel } from "./configuration-model";
+import type { DeviceOptions } from "./types";
+import { DeviceModelImpl, MODEL_TYPE } from "./device-model";
+import type { DeviceModel } from "./device-model";
 
 /**
- * # Configuration
+ * # Device
  *
- * The registration bean includes convenience methods for creating and working with ConfigurationModel instances.
+ * The registration bean includes convenience methods for creating and working with DeviceModel instances.
  *
  * ## type
  * The type property is a string that identifies the model type.
@@ -16,14 +16,14 @@ import type { ConfigurationModel } from "./configuration-model";
  * @example
  * ```typescript
  *
- * @kosDependency({modelType: Configuration.type, id: "configurationId"})
- * private configurationModel: ConfigurationModel;
+ * @kosDependency({modelType: Device.type, id: "deviceId"})
+ * private deviceModel: DeviceModel;
  * ```
  *
  *
  * ## factory
  *
- * The factory method creates a factory function that can be used to create new ConfigurationModel instances.
+ * The factory method creates a factory function that can be used to create new DeviceModel instances.
  *
  
  * As this is a singleton model, the factory function accepts the model options as its argument.
@@ -33,7 +33,7 @@ import type { ConfigurationModel } from "./configuration-model";
  *
  * @example
  * ```typescript
- * const model = Configuration.factory({
+ * const model = Device.factory({
  *   // Add option data
  * });
  * ```
@@ -42,16 +42,16 @@ import type { ConfigurationModel } from "./configuration-model";
  *
  * ## predicate
  *
- * [Typescript type predicate](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates) function that will identify and narrow down a model to a ConfigurationModel.
+ * [Typescript type predicate](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates) function that will identify and narrow down a model to a DeviceModel.
  *
  * @example
  * ```typescript
  *
  * const model: IKosDataModel = ...; // some model
  *
- * if (Configuration.predicate(model)) {
- *    // if the function evaluates to true, the model is narrowed down to ConfigurationModel
- *    // and the compiler will know that the model has the ConfigurationModel interface
+ * if (Device.predicate(model)) {
+ *    // if the function evaluates to true, the model is narrowed down to DeviceModel
+ *    // and the compiler will know that the model has the DeviceModel interface
  *    model.updateAvailability(false);
  * }
  * ```
@@ -68,28 +68,28 @@ import type { ConfigurationModel } from "./configuration-model";
  *
  * **registration.ts**
  * ```typescript
- * import { Configuration } from "@kos-ui/project-models";
+ * import { Device } from "@kos-ui/project-models";
  * import { KosModelRegistry } from "@kosdev-code/kos-dispense-sdk";
  *
  * import { initKosProvider } from "@kosdev-code/kos-ui-sdk";
  *
  * KosModelRegistry.dispense
  * .models()
- * .model(Configuration);
+ * .model(Device);
  * ```
  *
  * ## registration.singleton
  
- * The configuration model is a singleton model.  This means that each time the factory function is called , the same instance will be returned.
+ * The device model is a singleton model.  This means that each time the factory function is called , the same instance will be returned.
  * If the model does not yet exist, it will be created passing in the provided options to initialize it.
  *
  * Singleton models don't require an ID as they will use the model type as their ID to guarantee uniqueness throughout the system.
  
  * */
-export const Configuration = new SingletonKosModelRegistrationFactory<
-  ConfigurationModel,
-  ConfigurationOptions
+export const Device = new SingletonKosModelRegistrationFactory<
+  DeviceModel,
+  DeviceOptions
 >({
-  class: ConfigurationModelImpl,
+  class: DeviceModelImpl,
   type: MODEL_TYPE,
 });

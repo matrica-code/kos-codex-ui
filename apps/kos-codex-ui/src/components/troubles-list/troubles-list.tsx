@@ -6,13 +6,13 @@ import { useTroublesContainer } from "../../hooks";
 const log = KosLog.createLogger({ name: "troubles-list" });
 log.debug("troubles-list component loaded");
 
-const TroublesListContainer = styled.div`
+const LayoutContainer = styled.div`
   display: flex;
   flex-flow: column;
   gap: 10px;
 `;
 
-const TroublesListHeader = styled.h4`
+const Heading = styled.h4`
   margin: 0;
   margin-bottom: 10px;
 `;
@@ -21,14 +21,14 @@ const TroublesListHeader = styled.h4`
 export const TroublesList: React.FunctionComponent = kosComponent(() => {
   const { model } = useTroublesContainer();
   return (
-    <TroublesListContainer>
-      <TroublesListHeader>List of Available Troubles</TroublesListHeader>
+    <LayoutContainer>
+      <Heading>List of Available Troubles</Heading>
       {model?.data.map((troubles) => (
         <div key={troubles.id}>
           Path: {troubles.boardPath || "none"} - Type: {troubles.type}
         </div>
       ))}
-    </TroublesListContainer>
+    </LayoutContainer>
   );
 });
 

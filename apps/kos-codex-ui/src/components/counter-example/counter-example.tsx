@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { kosComponent } from "@kosdev-code/kos-ui-sdk";
-import { useColor, useCounter } from "../../hooks";
+import { useColor, useCounter, withCounter } from "../../hooks";
+import { CounterModel } from "@kos-codex/kos-codex-models";
 
 const Main = styled.div`
   display: flex;
@@ -55,5 +56,18 @@ export const CounterWithColor: React.FunctionComponent = kosComponent(() => {
     </Main>
   );
 });
+
+// extract-code CounterWithHOC
+const Counter: React.FunctionComponent<{
+  counter: CounterModel;
+}> = kosComponent(({ counter }: { counter: CounterModel }) => {
+  return (
+    <Main>
+      <div>Active Count: {counter.count}</div>
+    </Main>
+  );
+});
+// extract-code CounterHOCDeclaration
+export const CounterWithHOC = withCounter(Counter);
 
 export default CounterExample;

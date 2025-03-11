@@ -46,9 +46,9 @@
       "singleton": true,
       "container": true
     },
-    "configuration": {
-      "name": "configuration",
-      "type": "configuration-model",
+    "device": {
+      "name": "device",
+      "type": "device-model",
       "singleton": true
     }
   },

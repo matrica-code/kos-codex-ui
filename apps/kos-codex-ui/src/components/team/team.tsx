@@ -21,7 +21,7 @@ interface Props {
   removeTeam: () => void;
 }
 
-const InputContainer = styled.div`
+const InputLayout = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
@@ -78,7 +78,7 @@ export const TeamWithUser: React.FunctionComponent<Props> = kosComponent(
         <List>
           {users?.map((user) => <User key={user.id} user={user} />) ?? null}
         </List>
-        <InputContainer>
+        <InputLayout>
           <Input
             value={username}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
@@ -98,7 +98,7 @@ export const TeamWithUser: React.FunctionComponent<Props> = kosComponent(
           <Button type="button" onClick={handleClick}>
             Create
           </Button>
-        </InputContainer>
+        </InputLayout>
       </TeamCard>
     );
   },

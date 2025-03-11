@@ -1,20 +1,21 @@
 import styled from "@emotion/styled";
 
 import { kosComponent, KosLog } from "@kosdev-code/kos-ui-sdk";
-import { useConfiguration } from "../../hooks";
+import { useDevice, withDevice } from "../../hooks";
 import { Button, Input } from "@kosdev-code/kos-ddk-components";
 import { ChangeEvent, useState } from "react";
+import { DeviceModel } from "@kos-codex/kos-codex-models";
 
 const log = KosLog.createLogger({ name: "config-property" });
 log.debug("config-property component loaded");
 
-const ConfigPropertyContainer = styled.div`
+const LayoutContainer = styled.div`
   display: flex;
   flex-flow: column;
   gap: 16px;
 `;
 
-const FormControl = styled.div`
+const FormLayout = styled.div`
   display: flex;
   align-items: center;
   gap: 16px;
@@ -23,25 +24,32 @@ const FormControl = styled.div`
   }
 `;
 
+interface Props {
+  device: DeviceModel;
+}
+
 // extract-code ConfigProperty
-export const ConfigProperty: React.FunctionComponent = kosComponent(() => {
-  const { model: config } = useConfiguration();
-  const [value, setValue] = useState(config?.name || "");
+export const ConfigProperty: React.FunctionComponent<Props> = kosComponent(
+  ({ device }: Props) => {
+    const [value, setValue] = useState(device.deviceName.value || "");
 
-  return (
-    <ConfigPropertyContainer>
-      The name of this device is {config?.name}
-      <FormControl>
-        <Input
-          value={value}
-          onChange={(e: ChangeEvent<HTMLInputElement>) =>
-            setValue(e.target.value)
-          }
-        />
-        <Button onClick={() => config?.handleUpdate(value)}>Change Name</Button>
-      </FormControl>
-    </ConfigPropertyContainer>
-  );
-});
+    return (
+      <LayoutContainer>
+        The name of this device is {device.deviceName.value}
+        <FormLayout>
+          <Input
+            value={value}
+            onChange={(e: ChangeEvent<HTMLInputElement>) =>
+              setValue(e.target.value)
+            }
+          />
+          <Button onClick={() => device.deviceName.updateProperty(value)}>
+            Change Name
+          </Button>
+        </FormLayout>
+      </LayoutContainer>
+    );
+  },
+);
 
-export default ConfigProperty;
+export default withDevice(ConfigProperty);

@@ -42,12 +42,12 @@ export const globalTypes = {
 export const decorators = [
   (
     Story: ElementType,
-    context: { globals: { mode: ComponentMode; snippets: typeof snippets } }
+    context: { globals: { mode: ComponentMode; snippets: typeof snippets } },
   ) => (
     <MemoryRouter initialEntries={["/"]}>
       <Global
         styles={getStyles(
-          context.globals.mode === "compact" ? "compact" : "flex-eu"
+          context.globals.mode === "compact" ? "compact" : "flex-eu",
         )}
       />
       <ErrorBoundaryWithFallback>
@@ -78,6 +78,7 @@ export const decorators = [
 
 const preview: Preview = {
   parameters: {
+    options: {},
     backgrounds: {
       values: [
         {

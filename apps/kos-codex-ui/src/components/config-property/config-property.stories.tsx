@@ -1,6 +1,6 @@
 import { Meta } from "@storybook/react";
 import type { StoryObj } from "@storybook/react";
-import { ConfigProperty } from "./config-property";
+import ConfigProperty from "./config-property";
 
 type Story = StoryObj<typeof ConfigProperty>;
 

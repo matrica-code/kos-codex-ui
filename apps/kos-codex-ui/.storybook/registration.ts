@@ -7,12 +7,8 @@ import {
   LfcvPump,
   Lockout,
 } from "@kosdev-code/kos-ddk-models";
-import { Pump, type HolderModel } from "@kosdev-code/kos-dispense-sdk";
-import {
-  Device,
-  ExtensionManager,
-  registerLegacyModel,
-} from "@kosdev-code/kos-ui-sdk";
+import { Pump } from "@kosdev-code/kos-dispense-sdk";
+import { Device, registerLegacyModel } from "@kosdev-code/kos-ui-sdk";
 
 import { pumpTypeFactory } from "@kosdev-code/kos-ddk-model-components";
 import {
@@ -27,7 +23,7 @@ import {
   TroublesContainer,
   TeamContainer,
   UserContainer,
-  Configuration,
+  Device as DeviceModel,
 } from "@kos-codex/kos-codex-models";
 
 KosModelRegistry.freestyle
@@ -41,7 +37,7 @@ KosModelRegistry.freestyle
   .model(TeamContainer)
   .model(UserContainer)
   .model(TroublesContainer)
-  .model(Configuration)
+  .model(DeviceModel)
   .model(Color)
   .model(Lockout)
   .companion(Pump.type, pumpTypeFactory)
