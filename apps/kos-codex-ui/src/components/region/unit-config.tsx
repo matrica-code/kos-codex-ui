@@ -1,9 +1,9 @@
 import styled from "@emotion/styled";
 
 import { kosComponent, KosLog } from "@kosdev-code/kos-ui-sdk";
-import { withDevice } from "../../hooks";
+import { withUnitExample } from "../../hooks";
 import { ChangeEvent, useState } from "react";
-import { DeviceModel } from "@kos-codex/kos-codex-models";
+import { DeviceModel, UnitExampleModel } from "@kos-codex/kos-codex-models";
 import { Input } from "../input";
 import { Button } from "../button";
 
@@ -26,29 +26,37 @@ const FormLayout = styled.div`
 `;
 
 interface Props {
-  device: DeviceModel;
+  unitExample: UnitExampleModel;
 }
 
-// extract-code ConfigProperty
-export const ConfigProperty: React.FunctionComponent<Props> = kosComponent(
-  ({ device }: Props) => {
-    const [value, setValue] = useState(device.deviceName.value || "");
+export const UnitConfig: React.FunctionComponent<Props> = kosComponent(
+  ({ unitExample }: Props) => {
+    const [value, setValue] = useState(
+      unitExample.maxPourVolume.value?.toString() || "0",
+    );
 
     return (
       <LayoutContainer>
-        The name of this device is {device.deviceName.value}
+        The max pour volume is {unitExample.maxPourVolume.displayValue}, but is
+        stored as {unitExample.maxPourVolume.rawValue} (in ml).
         <FormLayout>
           <Input
             value={value}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
               setValue(e.target.value)
             }
+            type="text"
           />
           <Button
-            onClick={() => device.deviceName.updateProperty(value)}
+            onClick={() => {
+              unitExample.maxPourVolume.updateProperty(Number(value));
+              setValue(
+                () => unitExample?.maxPourVolume.value?.toString() || "0",
+              );
+            }}
             type="button"
           >
-            Change Name
+            Change Limit
           </Button>
         </FormLayout>
       </LayoutContainer>
@@ -56,4 +64,4 @@ export const ConfigProperty: React.FunctionComponent<Props> = kosComponent(
   },
 );
 
-export default withDevice(ConfigProperty);
+export default withUnitExample(UnitConfig);

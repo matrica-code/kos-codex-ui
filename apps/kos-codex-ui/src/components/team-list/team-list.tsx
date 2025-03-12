@@ -5,8 +5,9 @@ import { kosComponent } from "@kosdev-code/kos-ui-sdk";
 import { useTeamContainer, withTeamContainer } from "../../hooks";
 import { ChangeEvent, useEffect, useState } from "react";
 import { TeamWithUser } from "../team/team";
-import { Button, Input, Label } from "@kosdev-code/kos-ddk-components";
 import { TeamContainerModel } from "@kos-codex/kos-codex-models";
+import { Input } from "../input";
+import { Button } from "../button";
 
 const LayoutContainer = styled.div`
   display: flex;
@@ -41,7 +42,7 @@ export const TeamList: React.FunctionComponent<Props> = kosComponent(
     return (
       <div>
         <LayoutContainer>
-          <Label htmlFor="name">Name</Label>
+          <label htmlFor="name">Name</label>
           <Input
             type="text"
             value={name}

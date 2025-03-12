@@ -1,0 +1,43 @@
+import { Meta, Canvas } from "@storybook/blocks";
+import { Snippet } from "../snippet";
+import {RegionStory} from './region.stories'
+import {UnitsStory} from './units.stories'
+import { UnitConfigStory } from "./unit-config.stories";
+
+<Meta title="Foundations/8. Region Support" />
+
+# Region Support
+
+Region-handling is supported within kOS as a dedicated Region Service. A region model is provided by the kOS core, and there are hooks and other tools provided by the sdk to handle the region.
+
+Region support includes handling for datetime, as well as units of measure.
+
+## Date handling
+
+Support for the date and time is handled by a number of hooks, including `useKosRegions`, `useFormattedTime` and `useFormattedDate`
+
+<Snippet name="Region@region.tsx" />
+
+The above code renders like this:
+
+<Canvas of={RegionStory} />
+
+## Units of measure
+
+Support for units of measure (SI units vs Imperial) is also handled by the region service. This includes helper functions to convert units from SI to Imperial.
+
+<Canvas of={UnitsStory} />
+
+## Config Properties
+
+Units of measure are often held within configuration as specific units. The unit is stored within the configuration as a specific unit, but the region service can handle conversion both on read and write, so the end-user is always dealing with units they are more familiar with.
+
+<Canvas of={UnitConfigStory} />
+
+## Display Formatting
+
+## Unit Overrides
+
+In some cases and regions, there are exceptions to the unit system. In Canada, for example, you would primarily use SI units for volume, but use Imperial units for pressure. In that case, you can modify the decorator to specify the unit you want to use.
+
+// Example of overrides

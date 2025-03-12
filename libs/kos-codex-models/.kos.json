@@ -50,6 +50,11 @@
       "name": "device",
       "type": "device-model",
       "singleton": true
+    },
+    "unit-example": {
+      "name": "unit-example",
+      "type": "unit-example-model",
+      "singleton": true
     }
   },
   "generator": {

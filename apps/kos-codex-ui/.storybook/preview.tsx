@@ -78,7 +78,11 @@ export const decorators = [
 
 const preview: Preview = {
   parameters: {
-    options: {},
+    options: {
+      storySort: {
+        method: "numerical",
+      },
+    },
     backgrounds: {
       values: [
         {
