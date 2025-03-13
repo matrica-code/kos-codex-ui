@@ -10,6 +10,7 @@ import { ChangeEvent, useState } from "react";
 import { useUserContainer } from "../../hooks";
 import { User } from "../user";
 import styled from "@emotion/styled";
+import { Select } from "../select";
 
 const log = KosLog.createLogger({ name: "team" });
 log.debug("team component loaded");
@@ -85,7 +86,7 @@ export const TeamWithUser: React.FunctionComponent<Props> = kosComponent(
               setUsername(e.target.value)
             }
           />
-          <select onChange={(e) => setRole(e.target.value)}>
+          <Select onChange={(e) => setRole(e.target.value)}>
             {[
               { id: "admin", label: "Admin" },
               { id: "superadmin", label: "Superadmin" },
@@ -94,7 +95,7 @@ export const TeamWithUser: React.FunctionComponent<Props> = kosComponent(
             ].map(({ id, label }) => {
               return <option key={id} selected={id === role} label={label} />;
             })}
-          </select>
+          </Select>
           <Button type="button" onClick={handleClick}>
             Create
           </Button>

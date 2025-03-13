@@ -8,6 +8,7 @@ import {
   useKosRegions,
 } from "@kosdev-code/kos-ui-sdk";
 import { useEffect, useState } from "react";
+import { Select } from "../select";
 
 const log = KosLog.createLogger({ name: "region" });
 log.debug("region component loaded");
@@ -52,12 +53,12 @@ export const Region: React.FunctionComponent = kosComponent(() => {
         Formatted Date & Time: {formattedDate} - {formattedTime}
       </div>
       <label>Select a region:</label>
-      <select
+      <Select
         onChange={regionSelectProps.onChange}
         value={regionSelectProps.value}
       >
         {regionSelectProps.options}
-      </select>
+      </Select>
     </RegionContainer>
   );
 });

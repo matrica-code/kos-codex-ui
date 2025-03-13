@@ -19,6 +19,7 @@ export class UnitExampleModelImpl implements IKosDataModel, IKosIdentifiable {
   id: string;
   private logger: KosContextLogger;
 
+  // extract-code unit-example-config
   @kosConfigProperty({
     path: "app:kosdev.ddk:app",
     attribute: "maxPourVolume",

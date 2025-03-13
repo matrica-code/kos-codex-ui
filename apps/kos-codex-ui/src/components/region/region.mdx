@@ -32,6 +32,14 @@ Support for units of measure (SI units vs Imperial) is also handled by the regio
 
 Units of measure are often held within configuration as specific units. The unit is stored within the configuration as a specific unit, but the region service can handle conversion both on read and write, so the end-user is always dealing with units they are more familiar with.
 
+Like before, the config property is defined in the model with the `@kosConfigProperty` decorator.
+
+<Snippet name="unit-example-config@unit-example-model.ts" />
+
+In the component, we use the HOC to get the config property from the model. Even if we're using US units, the region service will convert the value to SI units both as we read and write the value.
+
+<Snippet name={["unit-config@unit-config.tsx", "unit-config-export@unit-config.tsx"]} />
+
 <Canvas of={UnitConfigStory} />
 
 ## Display Formatting
@@ -40,4 +48,3 @@ Units of measure are often held within configuration as specific units. The unit
 
 In some cases and regions, there are exceptions to the unit system. In Canada, for example, you would primarily use SI units for volume, but use Imperial units for pressure. In that case, you can modify the decorator to specify the unit you want to use.
 
-// Example of overrides

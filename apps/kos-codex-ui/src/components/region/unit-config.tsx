@@ -29,11 +29,10 @@ interface Props {
   unitExample: UnitExampleModel;
 }
 
+// extract-code unit-config
 export const UnitConfig: React.FunctionComponent<Props> = kosComponent(
   ({ unitExample }: Props) => {
-    const [value, setValue] = useState(
-      unitExample.maxPourVolume.value?.toString() || "0",
-    );
+    const [value, setValue] = useState(unitExample.maxPourVolume.value);
 
     return (
       <LayoutContainer>
@@ -43,16 +42,14 @@ export const UnitConfig: React.FunctionComponent<Props> = kosComponent(
           <Input
             value={value}
             onChange={(e: ChangeEvent<HTMLInputElement>) =>
-              setValue(e.target.value)
+              setValue(Number(e.target.value))
             }
-            type="text"
+            type="number"
           />
           <Button
             onClick={() => {
               unitExample.maxPourVolume.updateProperty(Number(value));
-              setValue(
-                () => unitExample?.maxPourVolume.value?.toString() || "0",
-              );
+              setValue(() => unitExample.maxPourVolume.value);
             }}
             type="button"
           >
@@ -64,4 +61,5 @@ export const UnitConfig: React.FunctionComponent<Props> = kosComponent(
   },
 );
 
+// extract-code unit-config-export
 export default withUnitExample(UnitConfig);

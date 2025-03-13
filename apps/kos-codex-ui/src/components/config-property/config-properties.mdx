@@ -1,6 +1,8 @@
 import { Meta, Canvas } from "@storybook/blocks";
 import { Snippet } from "../snippet";
 import {ConfigPropertyStory} from './config-property.stories'
+import { ConfigPropertyEnumStory } from "./config-property-enum.stories";
+import { ConfigPropertyBooleanStory } from "./config-property-boolean.stories";
 
 <Meta title="Foundations/7. Config Properties" />
 
@@ -11,7 +13,7 @@ A kOS powered device can rely on a lot of configuration properties. Anything fro
 
 Those properties can be accessed within code with the `@kosConfigProperty` decorator.
 
-<Snippet name="DeviceModel@device-model.ts" />
+<Snippet name="device-model-string@device-model.ts" />
 
 The value can be consumed by your app (either in models or in the UI) and can also be updated via the `updateProperty` method.
 
@@ -20,3 +22,28 @@ The value can be consumed by your app (either in models or in the UI) and can al
 As you might expect, configuration state persists, relative to the more ephemeral data state we've been using for our other models.
 
 <Canvas of={ConfigPropertyStory} />
+
+## Config Property Types
+
+Config properties can be of different types, as defined in the schema on the java side. This can include a range with steps, an enum, numbers, and booleans.
+
+### Enums
+
+Config properties that are enums provide a list of options that can be selected. This can be used for creating a `select` element that will allow the user to choose from a list of options.
+
+On the model:
+<Snippet name="device-model-enum@device-model.ts" />
+
+<Snippet name="ConfigPropertyEnum@config-property-enum.tsx" />
+
+<Canvas of={ConfigPropertyEnumStory} />
+
+### Boolean
+
+<Snippet name="device-model-boolean@device-model.ts" />
+
+<Snippet name="ConfigProperty@config-property-boolean.tsx" />
+
+Config properties that are booleans are simple true/false values. This can be used for creating a `checkbox` element that will allow the user to toggle the value.
+
+<Canvas of={ConfigPropertyBooleanStory} />
