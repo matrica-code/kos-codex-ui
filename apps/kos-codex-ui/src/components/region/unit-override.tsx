@@ -29,15 +29,15 @@ interface Props {
   unitExample: UnitExampleModel;
 }
 
-// extract-code unit-config
-export const UnitConfig: React.FunctionComponent<Props> = kosComponent(
+// extract-code unit-override
+export const UnitOverride: React.FunctionComponent<Props> = kosComponent(
   ({ unitExample }: Props) => {
-    const [value, setValue] = useState(unitExample.maxPourVolume.value);
+    const [value, setValue] = useState(unitExample.volWithoutIce.value);
 
     return (
       <LayoutContainer>
-        The max pour volume is {unitExample.maxPourVolume.displayValue}, but is
-        stored as {unitExample.maxPourVolume.rawValue} (in ml).
+        The max pour volume is {unitExample.volWithoutIce.displayValue}, but is
+        stored as {unitExample.volWithoutIce.rawValue} (in ml).
         <FormLayout>
           <Input
             value={value}
@@ -48,8 +48,8 @@ export const UnitConfig: React.FunctionComponent<Props> = kosComponent(
           />
           <Button
             onClick={() => {
-              unitExample.maxPourVolume.updateProperty(Number(value));
-              setValue(() => unitExample.maxPourVolume.value);
+              unitExample.volWithoutIce.updateProperty(Number(value));
+              setValue(() => unitExample.volWithoutIce.value);
             }}
             type="button"
           >
@@ -62,4 +62,4 @@ export const UnitConfig: React.FunctionComponent<Props> = kosComponent(
 );
 
 // extract-code unit-config-export
-export default withUnitExample(UnitConfig);
+export default withUnitExample(UnitOverride);

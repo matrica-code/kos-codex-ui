@@ -1,5 +1,4 @@
 import type {
-  KosContextLogger,
   IKosDataModel,
   IKosIdentifiable,
   PublicModelInterface,
@@ -16,7 +15,6 @@ export type DeviceModel = PublicModelInterface<DeviceModelImpl>;
 @kosModel(MODEL_TYPE)
 export class DeviceModelImpl implements IKosDataModel, IKosIdentifiable {
   id: string;
-  private logger: KosContextLogger;
 
   // extract-code device-model-string
   @kosConfigProperty({

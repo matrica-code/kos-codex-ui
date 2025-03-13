@@ -3,6 +3,7 @@ import { Snippet } from "../snippet";
 import {RegionStory} from './region.stories'
 import {UnitsStory} from './units.stories'
 import { UnitConfigStory } from "./unit-config.stories";
+import { UnitOverrideStory } from "./unit-override.stories";
 
 <Meta title="Foundations/8. Region Support" />
 
@@ -21,6 +22,8 @@ Support for the date and time is handled by a number of hooks, including `useKos
 The above code renders like this:
 
 <Canvas of={RegionStory} />
+
+Formatting of the date can also be updated via the `kos:service:region:settings` configuration properties.
 
 ## Units of measure
 
@@ -42,9 +45,14 @@ In the component, we use the HOC to get the config property from the model. Even
 
 <Canvas of={UnitConfigStory} />
 
-## Display Formatting
+## Unit Overrides & Display Formatting
 
-## Unit Overrides
+In some cases, you may want to use a different unit than the one specified in the standard region configuration, and always show the value in a specific unit.
 
-In some cases and regions, there are exceptions to the unit system. In Canada, for example, you would primarily use SI units for volume, but use Imperial units for pressure. In that case, you can modify the decorator to specify the unit you want to use.
+In this case, we're using the `@kosConfigProperty` decorator to specify the unit we want to use for this property. The `to` and `from` refer to the data flow from the model to the UI.
 
+<Snippet name="unit-override-example@unit-example-model.ts" />
+
+<Snippet name={["unit-override@unit-override.tsx", "unit-config-export@unit-override.tsx"]} />
+
+<Canvas of={UnitOverrideStory} />

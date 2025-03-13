@@ -26,6 +26,16 @@ export class UnitExampleModelImpl implements IKosDataModel, IKosIdentifiable {
   })
   maxPourVolume!: KosConfigProperty<number>;
 
+  // extract-code unit-override-example
+  @kosConfigProperty({
+    path: "assembly:core:board:macro:iceAgitator",
+    attribute: "settings.volWithoutIceMl",
+    converter: {
+      to: "fluid-ounce",
+    },
+  })
+  volWithoutIce!: KosConfigProperty<number>;
+
   constructor(
     modelId: string,
     options: UnitExampleOptions,
