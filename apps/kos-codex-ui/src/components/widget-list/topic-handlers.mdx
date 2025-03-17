@@ -1,0 +1,58 @@
+import { Meta, Canvas } from "@storybook/blocks";
+import { Snippet } from "../snippet";
+import { WidgetListStory } from "./widget-list.stories";
+
+<Meta title="Foundations/7. Topic Handlers" />
+
+# Topic Handlers
+
+Topic Handlers allows models to subscribe to updates on a specific topic. This allows the model to stay up to date with the backend without needing to poll.
+
+To use a topic handler, add the `@kosTopicHandler` decorator to a method on the model. This method will be called when the topic is updated.
+
+<Snippet name="widget-container-handler@widget-container-model.ts" />
+
+The topic handler method will receive the data from the topic as an argument. This data can be used to update the model. You can use the web socket inspector in the simulator to see the data that is being sent.
+
+<Canvas of={WidgetListStory} />
+
+## Wildcard Topics
+
+You can also subscribe to wildcard topics. This is useful when you want to subscribe to a topic that has a dynamic part. For example, if you want to subscribe to all widget topics, you can add a wildcard to the topic name, and you'll recieve all topics that match that pattern.
+
+<Snippet name="widget-container-wildcard@widget-container-model.ts" />
+
+## Adding conditional logic
+
+There's an option within the `@kosTopicHandler` decorator to add a condition to the handler. This allows you to only run the handler if the condition is met.
+
+<Snippet name="widget-container-condition@widget-container-model.ts" />
+
+## Commumnicating between models
+
+You can also use the eventbus to communicate between models. This is useful when you want to loosely couple models without having to create a direct dependency between them
+
+To do this, publish to the event bus, then set up a model to handle that.
+
+<Snippet name="publish-event@team-container-model.ts" />
+
+<Snippet name="topic-handler@user-container-model.ts" />
+
+## Prop Keys
+
+Sometimes the topic of an event is dynamic depending on data in the model. You can use the `createPropKey` helper to set the topic dynamically and insert it into the topic string.
+
+<Snippet
+  name={[
+    "prop-key@widget-container-model.ts",
+    "prop-key-handler@widget-container-model.ts",
+  ]}
+/>
+
+## Side Effects
+
+Sometimes models create side effects, which need to be captured - kos offers `@kosModelEffect` to handle this. This is useful when you want to run a side effect when a model is updated. It works in very much the same way as React's `useEffect`.
+
+This is instead of using computed properties and can help capture side effects in a more declarative way.
+
+<Snippet name="kosModelEffect@widget-model.ts" />

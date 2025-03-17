@@ -55,6 +55,17 @@
       "name": "unit-example",
       "type": "unit-example-model",
       "singleton": true
+    },
+    "widget": {
+      "name": "widget",
+      "type": "widget-model",
+      "singleton": false
+    },
+    "widget-container": {
+      "name": "widget-container",
+      "type": "widget-container-model",
+      "singleton": true,
+      "container": true
     }
   },
   "generator": {

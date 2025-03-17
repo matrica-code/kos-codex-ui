@@ -21,12 +21,18 @@ The difference is that the HOC guarantees that the model will be present, while 
 Within a component, use the hook to get the model and render the count.
 
 #### With the Hook
+
 <Snippet name="CounterExample@counter-example.tsx" />
 
 #### With the HOC
-<Snippet name={["CounterWithHOC@counter-example.tsx", "CounterHOCDeclaration@counter-example.tsx"]} />
+
+<Snippet
+  name={[
+    "CounterWithHOC@counter-example.tsx",
+    "CounterHOCDeclaration@counter-example.tsx",
+  ]}
+/>
 
 Below is a working demo of the above code.
-
 
 <Canvas of={CounterExampleStory} sourceState="none" />

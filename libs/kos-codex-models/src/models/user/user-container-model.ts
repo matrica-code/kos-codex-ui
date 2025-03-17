@@ -3,6 +3,7 @@ import {
   kosChild,
   KosModelContainer,
   kosReference,
+  kosTopicHandler,
 } from "@kosdev-code/kos-ui-sdk";
 import type {
   IKosModelContainer,
@@ -60,6 +61,17 @@ export class UserContainerModelImpl
 
   updateModel(options: UserContainerOptions): void {
     // Update model properties here.
+  }
+
+  // extract-code topic-handler
+  @kosTopicHandler({
+    topic: "/team/remove",
+    websocket: false,
+  })
+  handleTeamRemove(teamId: string) {
+    this.models.getIndexByKey("byTeamId", teamId).forEach((model) => {
+      this.removeModel(model.id);
+    });
   }
 
   createUser(options: UserOptions) {

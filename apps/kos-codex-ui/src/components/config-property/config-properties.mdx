@@ -1,11 +1,10 @@
 import { Meta, Canvas } from "@storybook/blocks";
 import { Snippet } from "../snippet";
-import {ConfigPropertyStory} from './config-property.stories'
+import { ConfigPropertyStory } from "./config-property.stories";
 import { ConfigPropertyEnumStory } from "./config-property-enum.stories";
 import { ConfigPropertyBooleanStory } from "./config-property-boolean.stories";
 
-<Meta title="Foundations/7. Config Properties" />
-
+<Meta title="Foundations/8. Config Properties" />
 
 # Accessing Config Properties
 
@@ -27,11 +26,12 @@ As you might expect, configuration state persists, relative to the more ephemera
 
 Config properties can be of different types, as defined in the schema on the java side. This can include a range with steps, an enum, numbers, and booleans.
 
-### Enums
+### Enums & Ranges
 
-Config properties that are enums provide a list of options that can be selected. This can be used for creating a `select` element that will allow the user to choose from a list of options.
+Config properties that are enums or ranges provide a list of options that can be selected. This can be used for creating a `select` element that will allow the user to choose from a list of options.
 
 On the model:
+
 <Snippet name="device-model-enum@device-model.ts" />
 
 <Snippet name="ConfigPropertyEnum@config-property-enum.tsx" />

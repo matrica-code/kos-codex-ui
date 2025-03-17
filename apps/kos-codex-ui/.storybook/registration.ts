@@ -25,6 +25,7 @@ import {
   UserContainer,
   Device as DeviceModel,
   UnitExample,
+  WidgetContainer,
 } from "@kos-codex/kos-codex-models";
 
 KosModelRegistry.freestyle
@@ -36,6 +37,7 @@ KosModelRegistry.freestyle
   .model(LfcvPump)
   .model(Counter)
   .model(UnitExample)
+  .model(WidgetContainer)
   .model(TeamContainer)
   .model(UserContainer)
   .model(TroublesContainer)

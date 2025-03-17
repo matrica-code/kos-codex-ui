@@ -1,4 +1,9 @@
-import { kosModel, kosChild, KosModelContainer } from "@kosdev-code/kos-ui-sdk";
+import {
+  kosModel,
+  kosChild,
+  KosModelContainer,
+  EventBus,
+} from "@kosdev-code/kos-ui-sdk";
 import type {
   IKosModelContainer,
   IKosDataModel,
@@ -55,8 +60,10 @@ export class TeamContainerModelImpl
     this._models.addModel(model);
   }
 
+  // extract-code publish-event
   removeModel = (id: string) => {
     this._models.removeModel(id);
+    EventBus.publish("/team/remove", { id });
   };
 
   // extract-code ignore

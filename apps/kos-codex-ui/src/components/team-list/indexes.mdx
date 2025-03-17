@@ -1,5 +1,5 @@
-import { Meta, Canvas, Story } from "@storybook/blocks";
-import { TeamListStory, TeamListStoryWithData } from "./team-list.stories";
+import { Meta, Canvas } from "@storybook/blocks";
+import { TeamListStoryWithData } from "./team-list.stories";
 import { Snippet } from "../snippet";
 
 <Meta title="Foundations/5. Collections and Indexes" />
@@ -11,10 +11,16 @@ When declaring a `kosChild` there are options to set up indexes for the children
 For this example, we will create a User Model and User Container Model using `kosui model`. We want users to belong to teams, but not be a child of a specific team.
 
 There are two ways to index collections:
+
 - By property
 - Via a function that provides the model as an argument
 
-<Snippet name={["model-index@user-container-model.ts", "model-index-get@user-container-model.ts"]} />
+<Snippet
+  name={[
+    "model-index@user-container-model.ts",
+    "model-index-get@user-container-model.ts",
+  ]}
+/>
 
 We can then create a method to use that model index, that we can then use in a component like the Team Component.
 
