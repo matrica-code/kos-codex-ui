@@ -1,0 +1,29 @@
+import { Meta, Canvas } from "@storybook/blocks";
+import { Snippet } from "../snippet";
+import { FuturesStory } from "./futures.stories";
+
+<Meta title="Foundations/10. Futures" />
+
+# Futures and async operations
+
+When dealing with a dispenser, you have to handle a lot of long-running, asynchronous operations. kOS provides a way to handle these operations with Futures.
+
+A future is an object that is subscribed to updates for a specific operation. This can be used to track the progress of an operation and display those updates in the UI.
+
+To make a model future-aware, it needs to be extended with the `FutureContainer` class, and has a `futureManager` property that's initialized with a new `FutureManager` instance.
+
+The creation of a future is done with a `@kosFuture` decorator on a method that returns a `Future` object.
+
+Then within the UI, call the method and the future will be created and tracked, with updates being automatically sent to the UI.
+
+<Snippet name="future-model@futures-model.ts" />
+
+Futures can also send along data, like remaining time, or information relevant to the operation. What's being sent will depend on the backend implementation, but is fully flexible to your use case.
+
+It can also be very useful to add multiple `get` methods to the model in order to simplify frontend code and ensure better observability.
+
+<Snippet name="futures-component@futures.tsx" />
+
+You can also hook into a future's lifecycle by creating a `onFutureUpdate` method in the model. This method will be called whenever the future is updated and can handle side-effects or more complex logic.
+
+<Canvas of={FuturesStory} />

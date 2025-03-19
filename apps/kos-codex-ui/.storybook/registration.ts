@@ -26,6 +26,7 @@ import {
   Device as DeviceModel,
   UnitExample,
   WidgetContainer,
+  Futures,
 } from "@kos-codex/kos-codex-models";
 
 KosModelRegistry.freestyle
@@ -41,6 +42,7 @@ KosModelRegistry.freestyle
   .model(TeamContainer)
   .model(UserContainer)
   .model(TroublesContainer)
+  .model(Futures)
   .model(DeviceModel)
   .model(Color)
   .model(Lockout)

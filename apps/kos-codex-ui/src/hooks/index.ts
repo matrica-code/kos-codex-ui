@@ -19,3 +19,5 @@ export * from "./device";
 export * from "./unit-example";
 
 export * from "./widget-container";
+
+export * from "./futures";

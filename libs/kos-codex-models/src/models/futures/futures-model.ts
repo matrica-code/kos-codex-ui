@@ -1,0 +1,63 @@
+import type {
+  KosContextLogger,
+  KosCreationContext,
+  IKosDataModel,
+  IKosIdentifiable,
+  PublicModelInterface,
+  FutureContainer,
+  FutureAwareContainer,
+} from "@kosdev-code/kos-ui-sdk";
+import { FutureHandler, kosFuture, kosModel } from "@kosdev-code/kos-ui-sdk";
+
+import { startFuture } from "./services";
+
+export const MODEL_TYPE = "futures-model";
+
+export type FuturesModel = PublicModelInterface<FuturesModelImpl>;
+
+// extract-code future-model
+@kosModel(MODEL_TYPE)
+export class FuturesModelImpl
+  implements IKosDataModel, IKosIdentifiable, FutureContainer
+{
+  id: string;
+  private logger: KosContextLogger;
+  futureHandler: FutureAwareContainer;
+
+  constructor(modelId: string) {
+    this.id = modelId;
+    this.futureHandler = new FutureHandler(this);
+  }
+
+  @kosFuture()
+  async start(trackerId?: string) {
+    console.log(trackerId);
+    const [err, data] = await startFuture(trackerId || "");
+    if (err) {
+      this.logger.error(err);
+      return;
+    } else if (data) {
+      return data;
+    }
+    return null;
+  }
+
+  get progress(): number | undefined {
+    return this.futureHandler.future?.progress;
+  }
+
+  get timeLeft(): number | undefined {
+    if (!this.futureHandler.future?.remainingTimeMs) {
+      return 0;
+    }
+    return this.futureHandler.future?.remainingTimeMs / 1000;
+  }
+
+  get isComplete(): boolean {
+    return this.futureHandler.future?.endState === "SUCCESS";
+  }
+
+  get isInProgress(): boolean {
+    return !!this.futureHandler.future && !this.futureHandler.future.endState;
+  }
+}

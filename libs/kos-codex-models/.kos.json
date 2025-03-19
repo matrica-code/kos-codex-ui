@@ -66,6 +66,11 @@
       "type": "widget-container-model",
       "singleton": true,
       "container": true
+    },
+    "futures": {
+      "name": "futures",
+      "type": "futures-model",
+      "singleton": false
     }
   },
   "generator": {
