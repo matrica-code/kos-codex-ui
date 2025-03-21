@@ -41,9 +41,13 @@ export const globalTypes = {
 
 // extract-code app
 export const AppExample = ({ children }: { children: React.ReactNode }) => {
+  console.log("AppExample");
   return (
     <KosCoreContextProvider>
-      <KosTranslationProvider appContext={"app/kos-codex-ui"} locale="en">
+      <KosTranslationProvider
+        appContext={["app/system", "app/kos-codex"]}
+        locale="en"
+      >
         {children}
       </KosTranslationProvider>
     </KosCoreContextProvider>

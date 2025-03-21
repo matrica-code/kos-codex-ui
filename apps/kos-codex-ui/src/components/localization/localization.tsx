@@ -11,13 +11,17 @@ log.debug("localization component loaded");
 
 const LocalizationContainer = styled.div`
   display: flex;
-  background-color: red;
   height: 30px;
 `;
 
+// extract-code localization
 export const Localization: React.FunctionComponent = kosComponent(() => {
   const { t } = useKosTranslation("kos-codex");
-  return <LocalizationContainer>hi {t("mainView")}</LocalizationContainer>;
+  return (
+    <LocalizationContainer>
+      {t("example.welcome", { defaultValue: "Welcome to the kOS codex" })}
+    </LocalizationContainer>
+  );
 });
 
 export default Localization;

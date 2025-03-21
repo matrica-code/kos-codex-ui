@@ -71,6 +71,11 @@
       "name": "futures",
       "type": "futures-model",
       "singleton": false
+    },
+    "timer": {
+      "name": "timer",
+      "type": "timer-model",
+      "singleton": true
     }
   },
   "generator": {
