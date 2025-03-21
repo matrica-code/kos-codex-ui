@@ -1,6 +1,4 @@
 import type {
-  KosContextLogger,
-  KosCreationContext,
   IKosDataModel,
   IKosIdentifiable,
   PublicModelInterface,
@@ -21,7 +19,6 @@ export class FuturesModelImpl
   implements IKosDataModel, IKosIdentifiable, FutureContainer
 {
   id: string;
-  private logger: KosContextLogger;
   futureHandler: FutureAwareContainer;
 
   constructor(modelId: string) {
@@ -34,7 +31,6 @@ export class FuturesModelImpl
     console.log(trackerId);
     const [err, data] = await startFuture(trackerId || "");
     if (err) {
-      this.logger.error(err);
       return;
     } else if (data) {
       return data;

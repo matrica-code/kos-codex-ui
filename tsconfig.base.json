@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@kos-codex/kos-codex-i18n": ["translations/kos-codex-i18n/src/index.ts"],
       "@kos-codex/kos-codex-models": ["libs/kos-codex-models/src/index.ts"],
       "@kos-codex/model-components": ["libs/model-components/src/index.ts"]
     }

@@ -19,7 +19,7 @@ const Main = styled.div`
 `;
 
 export const MainView: React.FunctionComponent = kosComponent(() => {
-  const { t } = useKosTranslation("lang-demo");
+  const { t } = useKosTranslation("kos-codex");
   return (
     <Main>
       <div className="logo">

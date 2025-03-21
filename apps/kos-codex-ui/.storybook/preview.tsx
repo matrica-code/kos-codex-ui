@@ -39,6 +39,17 @@ export const globalTypes = {
   },
 };
 
+// extract-code app
+export const AppExample = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <KosCoreContextProvider>
+      <KosTranslationProvider appContext={"app/kos-codex-ui"} locale="en">
+        {children}
+      </KosTranslationProvider>
+    </KosCoreContextProvider>
+  );
+};
+
 export const decorators = [
   (
     Story: ElementType,
@@ -52,24 +63,20 @@ export const decorators = [
       />
       <ErrorBoundaryWithFallback>
         <Suspense fallback={<LoadingMessage />}>
-          <KosCoreContextProvider>
-            <KosTranslationProvider appContext={["app/system"]} locale="en">
-              <ApplicationProvider>
-                <ApplicationComponentConfigurationProvider
-                  modalModeOverride={
-                    context.globals.mode === "compact"
-                      ? "fullscreen"
-                      : undefined
-                  }
-                  componentModeOverride={context.globals.mode}
-                >
-                  <Suspense>
-                    <Story />
-                  </Suspense>
-                </ApplicationComponentConfigurationProvider>
-              </ApplicationProvider>
-            </KosTranslationProvider>
-          </KosCoreContextProvider>
+          <AppExample>
+            <ApplicationProvider>
+              <ApplicationComponentConfigurationProvider
+                modalModeOverride={
+                  context.globals.mode === "compact" ? "fullscreen" : undefined
+                }
+                componentModeOverride={context.globals.mode}
+              >
+                <Suspense>
+                  <Story />
+                </Suspense>
+              </ApplicationComponentConfigurationProvider>
+            </ApplicationProvider>
+          </AppExample>
         </Suspense>
       </ErrorBoundaryWithFallback>
     </MemoryRouter>

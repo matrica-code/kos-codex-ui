@@ -1,14 +1,14 @@
-import { composePlugins, withNx } from '@nx/webpack';
-import { withReact } from '@nx/react';
-import * as webpack from 'webpack';
-import { withModuleFederation } from '@nx/react/module-federation';
+import { composePlugins, withNx } from "@nx/webpack";
+import { withReact } from "@nx/react";
+import * as webpack from "webpack";
+import { withModuleFederation } from "@nx/react/module-federation";
 
-import baseConfig from './module-federation.config';
+import baseConfig from "./module-federation.config";
 
-import * as dotenv from 'dotenv';
+import * as dotenv from "dotenv";
 
 dotenv.config({
-  path: '.env',
+  path: ".env",
 });
 
 const config = {
@@ -17,7 +17,7 @@ const config = {
 
 function getKosEnv() {
   const kosKeys = Object.keys(process.env).filter((key) =>
-    key.startsWith('KOS_')
+    key.startsWith("KOS_"),
   );
   return kosKeys;
 }
@@ -38,8 +38,8 @@ export default composePlugins(
     config.mode = (process.env.NODE_ENV || config.mode) as any;
     // customize webpack config here
     config?.plugins?.push(
-      new webpack.EnvironmentPlugin(['NODE_ENV', ...getKosEnv()])
+      new webpack.EnvironmentPlugin(["NODE_ENV", ...getKosEnv()]),
     );
     return config;
-  }
+  },
 );

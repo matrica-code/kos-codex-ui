@@ -1,13 +1,12 @@
 {
-  "name": "kos-codex-ui",
-  "type": "kos.ui",
+  "name": "kos-codex-i18n",
+  "type": "kos.localization",
   "version": "0.1.0",
   "kos": {
     "localization": {
       "defaultLocale": "en",
       "namespaces": {
-        "kos-codex": {},
-        "example": {}
+        "kos-codex": {}
       }
     }
   }
