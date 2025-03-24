@@ -24,7 +24,7 @@ The `LocalizationProvider` is a React component that wraps your application and 
 
 ## useTranslation usage
 
-The `useTranslation` hook is used to access the translations in your components. It returns a `t` function that takes a key and returns the translation for that key.
+The `useTranslation` hook is used to access the translations in your components. It returns a `t` function that takes a key and returns the translation for that key. The argument the hook takes is the namespace of the translations - translations are loaded asynchronously so only necessary namespaces are loaded.
 
 <Snippet name="localization@localization.tsx" />
 

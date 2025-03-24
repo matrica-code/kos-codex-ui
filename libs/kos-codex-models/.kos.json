@@ -75,7 +75,7 @@
     "timer": {
       "name": "timer",
       "type": "timer-model",
-      "singleton": true
+      "singleton": false
     }
   },
   "generator": {

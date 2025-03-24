@@ -27,9 +27,10 @@ import {
   UnitExample,
   WidgetContainer,
   Futures,
+  Countdown,
 } from "@kos-codex/kos-codex-models";
 
-KosModelRegistry.freestyle
+KosModelRegistry.dispense
   .models()
   .model(CopyLogs)
   .model(Device)
@@ -45,8 +46,10 @@ KosModelRegistry.freestyle
   .model(Futures)
   .model(DeviceModel)
   .model(Color)
+  .model(Countdown)
   .model(Lockout)
   .companion(Pump.type, pumpTypeFactory)
+  .companion(Counter.type, Countdown.type)
   .preload(Application.type);
 
 Object.keys(DDKModels).forEach((key) => {

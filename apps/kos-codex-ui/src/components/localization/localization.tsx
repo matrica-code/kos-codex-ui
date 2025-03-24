@@ -9,7 +9,7 @@ import {
 const log = KosLog.createLogger({ name: "localization" });
 log.debug("localization component loaded");
 
-const LocalizationContainer = styled.div`
+const LayoutContainer = styled.div`
   display: flex;
   height: 30px;
 `;
@@ -18,9 +18,9 @@ const LocalizationContainer = styled.div`
 export const Localization: React.FunctionComponent = kosComponent(() => {
   const { t } = useKosTranslation("kos-codex");
   return (
-    <LocalizationContainer>
+    <LayoutContainer>
       {t("example.welcome", { defaultValue: "Welcome to the kOS codex" })}
-    </LocalizationContainer>
+    </LayoutContainer>
   );
 });
 

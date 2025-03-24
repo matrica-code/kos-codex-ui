@@ -8,4 +8,4 @@ export * from "./models/device";
 export * from "./models/unit-example";
 export * from "./models/widget";
 export * from "./models/futures";
-export * from "./models/timer";
+export * from "./models/countdown";

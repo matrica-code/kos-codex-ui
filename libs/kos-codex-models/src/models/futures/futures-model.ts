@@ -28,7 +28,6 @@ export class FuturesModelImpl
 
   @kosFuture()
   async start(trackerId?: string) {
-    console.log(trackerId);
     const [err, data] = await startFuture(trackerId || "");
     if (err) {
       return;

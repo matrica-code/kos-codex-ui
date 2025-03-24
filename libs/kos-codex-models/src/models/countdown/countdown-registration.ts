@@ -1,12 +1,15 @@
-import { SingletonKosModelRegistrationFactory } from "@kosdev-code/kos-ui-sdk";
-import type { TimerOptions } from "./types";
-import { TimerModelImpl, MODEL_TYPE } from "./timer-model";
-import type { TimerModel } from "./timer-model";
+import {
+  KosModelRegistrationFactory,
+  SingletonKosModelRegistrationFactory,
+} from "@kosdev-code/kos-ui-sdk";
+import type { CountdownOptions } from "./types";
+import { CountdownModelImpl, MODEL_TYPE } from "./countdown-model";
+import type { CountdownModel } from "./countdown-model";
 
 /**
- * # Timer
+ * # Countdown
  *
- * The registration bean includes convenience methods for creating and working with TimerModel instances.
+ * The registration bean includes convenience methods for creating and working with CountdownModel instances.
  *
  * ## type
  * The type property is a string that identifies the model type.
@@ -16,14 +19,14 @@ import type { TimerModel } from "./timer-model";
  * @example
  * ```typescript
  *
- * @kosDependency({modelType: Timer.type, id: "timerId"})
- * private timerModel: TimerModel;
+ * @kosDependency({modelType: Countdown.type, id: "countdownId"})
+ * private countdownModel: CountdownModel;
  * ```
  *
  *
  * ## factory
  *
- * The factory method creates a factory function that can be used to create new TimerModel instances.
+ * The factory method creates a factory function that can be used to create new CountdownModel instances.
  *
  
  * As this is a singleton model, the factory function accepts the model options as its argument.
@@ -33,7 +36,7 @@ import type { TimerModel } from "./timer-model";
  *
  * @example
  * ```typescript
- * const model = Timer.factory({
+ * const model = Countdown.factory({
  *   // Add option data
  * });
  * ```
@@ -42,16 +45,16 @@ import type { TimerModel } from "./timer-model";
  *
  * ## predicate
  *
- * [Typescript type predicate](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates) function that will identify and narrow down a model to a TimerModel.
+ * [Typescript type predicate](https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates) function that will identify and narrow down a model to a CountdownModel.
  *
  * @example
  * ```typescript
  *
  * const model: IKosDataModel = ...; // some model
  *
- * if (Timer.predicate(model)) {
- *    // if the function evaluates to true, the model is narrowed down to TimerModel
- *    // and the compiler will know that the model has the TimerModel interface
+ * if (Countdown.predicate(model)) {
+ *    // if the function evaluates to true, the model is narrowed down to CountdownModel
+ *    // and the compiler will know that the model has the CountdownModel interface
  *    model.updateAvailability(false);
  * }
  * ```
@@ -68,28 +71,28 @@ import type { TimerModel } from "./timer-model";
  *
  * **registration.ts**
  * ```typescript
- * import { Timer } from "@kos-ui/project-models";
+ * import { Countdown } from "@kos-ui/project-models";
  * import { KosModelRegistry } from "@kosdev-code/kos-dispense-sdk";
  *
  * import { initKosProvider } from "@kosdev-code/kos-ui-sdk";
  *
  * KosModelRegistry.dispense
  * .models()
- * .model(Timer);
+ * .model(Countdown);
  * ```
  *
  * ## registration.singleton
  
- * The timer model is a singleton model.  This means that each time the factory function is called , the same instance will be returned.
+ * The countdown model is a singleton model.  This means that each time the factory function is called , the same instance will be returned.
  * If the model does not yet exist, it will be created passing in the provided options to initialize it.
  *
  * Singleton models don't require an ID as they will use the model type as their ID to guarantee uniqueness throughout the system.
  
  * */
-export const Timer = new SingletonKosModelRegistrationFactory<
-  TimerModel,
-  TimerOptions
+export const Countdown = new SingletonKosModelRegistrationFactory<
+  CountdownModel,
+  CountdownOptions
 >({
-  class: TimerModelImpl,
+  class: CountdownModelImpl,
   type: MODEL_TYPE,
 });

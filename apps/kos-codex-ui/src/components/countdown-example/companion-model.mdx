@@ -1,0 +1,27 @@
+import { Meta, Canvas } from "@storybook/blocks";
+import { Snippet } from "../snippet";
+import { TimerExampleStory } from "./countdown-example.stories";
+
+<Meta title="Foundations/4b. Companion Models" />
+
+# Companion Models
+
+As part of the model framework, you may want to extend a specific model to add functionality. Instead of this, the preferred pattern within kOS is the use of companion models. A companion model favours composition over inheritance, and enables the creation of a model that is tightly coupled to another model while extending its functionality.
+
+For this example, let's create a companion model to our Counter, called Countdown - this allows us to have a `Countdown` that doesn't have to duplicate all of the logic of the `Counter` but instead can utilize that parent's methods to provide new functionality.
+
+When the initial model is created, a companion model is also created.
+
+To create a companion model we use `kosui:companion` which will set up the proper typing. We also need to register the model, as well as _register it as a companion model_ within the registration chain.
+
+`.register(ParentModel.type, CompanionModel.type)`
+
+<Snippet name="countdown@countdown-model.ts" />
+
+In this case we're adding a `reset` method and creating a new computed property - time remaining. The original countdown model is unchanged but we can now use some of the underlying logic and add onto the functionality.
+
+In order to access the companion model, we use the `getCompanionModel` utility, either in the model or within a react component.
+
+<Snippet name="CountdownExample@countdown-example.tsx" />
+
+<Canvas of={TimerExampleStory} />

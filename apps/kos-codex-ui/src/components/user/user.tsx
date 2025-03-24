@@ -9,7 +9,6 @@ interface Props {
   user: UserModel;
 }
 export const User: React.FunctionComponent<Props> = kosComponent(({ user }) => {
-  console.log(user);
   return (
     <div>
       Name: {user.name} - Role: {user.role}
