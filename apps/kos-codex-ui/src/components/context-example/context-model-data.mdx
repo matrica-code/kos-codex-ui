@@ -1,0 +1,22 @@
+import { Meta, Canvas } from "@storybook/blocks";
+import { Snippet } from "../snippet";
+
+<Meta title="Foundations/7. Accessing model data" />
+
+# Accessing model data
+
+## Hooks and HoCs
+
+`kosui hook` generates hooks and higher-order components that can access models to provide the UI with data. Both have trade-offs - the hook is simple to use but the model is not guaranteed so some handling needs to take place to provide type safety.
+
+The higher-order component provides the model, but if used too much could have a performance impacts. When a model needs to be used sparingly, both of these approaches work well.
+
+## Context
+
+If a specific model is used a lot within a specific section of the UI, using `context` will help to reduce the use of HoCs or prop drilling. For more information on Context as a concept, check out the (react docs)[https://react.dev/learn/passing-data-deeply-with-context].
+
+kOS provides a generator to create model contexts, which provides the tools needed to access the model without multiple HoCs or hooks. Use `kosui context` to generate the appropriate files, then use the `provider` higher up in the tree and use the hook provided to access it further down.
+
+<Snippet name="provider@provider-example.tsx" />
+
+<Snippet name="provider-hook@context-example.tsx" />

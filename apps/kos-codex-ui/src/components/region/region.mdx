@@ -1,11 +1,11 @@
 import { Meta, Canvas } from "@storybook/blocks";
 import { Snippet } from "../snippet";
-import {RegionStory} from './region.stories'
-import {UnitsStory} from './units.stories'
+import { RegionStory } from "./region.stories";
+import { UnitsStory } from "./units.stories";
 import { UnitConfigStory } from "./unit-config.stories";
 import { UnitOverrideStory } from "./unit-override.stories";
 
-<Meta title="Foundations/9. Region Support" />
+<Meta title="Foundations/11. Region Support" />
 
 # Region Support
 
@@ -41,7 +41,9 @@ Like before, the config property is defined in the model with the `@kosConfigPro
 
 In the component, we use the HOC to get the config property from the model. Even if we're using US units, the region service will convert the value to SI units both as we read and write the value.
 
-<Snippet name={["unit-config@unit-config.tsx", "unit-config-export@unit-config.tsx"]} />
+<Snippet
+  name={["unit-config@unit-config.tsx", "unit-config-export@unit-config.tsx"]}
+/>
 
 <Canvas of={UnitConfigStory} />
 
@@ -53,6 +55,11 @@ In this case, we're using the `@kosConfigProperty` decorator to specify the unit
 
 <Snippet name="unit-override-example@unit-example-model.ts" />
 
-<Snippet name={["unit-override@unit-override.tsx", "unit-config-export@unit-override.tsx"]} />
+<Snippet
+  name={[
+    "unit-override@unit-override.tsx",
+    "unit-config-export@unit-override.tsx",
+  ]}
+/>
 
 <Canvas of={UnitOverrideStory} />
